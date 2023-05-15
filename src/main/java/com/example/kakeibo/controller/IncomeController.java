@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -24,8 +25,8 @@ public class IncomeController {
 	@Autowired
 	private IncomeRepository incomeRepository;
 	
-//	@Autowired
-//	private IncomeService incomeService;
+	@Autowired
+	private IncomeService incomeService;
 	
 	//新規収入登録ページに遷移
 	@GetMapping("/newIncome")
@@ -44,17 +45,18 @@ public class IncomeController {
 	
 	//収入情報更新ページに遷移
 	@GetMapping("/editIncome/{incomeId}")
-    public String editIncome(@PathVariable("incomeId") Income income, Model model) {
-		model.addAttribute("income", income);
+    public String editIncomeGet(@PathVariable("incomeId") Income income, Model model) {
+		model.addAttribute("income",income);
 		return "editIncome";
     }
 	
 	//フォームから入力された収入変更情報をincomeServiceへ送る。
-//	@PostMapping("/editIncome/{incomeId}")
-//	public String editIncome(@PathVariable("incomeId") Income income) {
-////		incomeService.updateIncome(income,income.getIncomeAmount(),income.getDatetime(),income.getMemo());
-//		return "currentMonth";
-//	}
+	@PostMapping("/editIncome")
+	public String editIncomePost(Income income) {
+		
+		incomeService.updateIncome(income);
+		return "redirect:/currentMonthTotal";
+	}
 	
 	
 	

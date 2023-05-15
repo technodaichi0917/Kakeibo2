@@ -31,10 +31,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			//pトップページ以後はログインページへ遷移するようにする
 			.formLogin()	
 			.loginPage("/loginForm").permitAll()
+			.defaultSuccessUrl("/index")
 		.and()
 			//pログアウトのpostが飛んで来たらトップページへ遷移する
 			.logout()
-			.logoutSuccessUrl("/index")
+			.logoutSuccessUrl("/")
 		;
 	}
 

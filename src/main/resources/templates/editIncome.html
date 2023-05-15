@@ -11,7 +11,8 @@
 
 <h2 style= "text-align:center">収入変更登録</h2>
 
-<form th:action = "@{|/editIncome/${incomeId}|}" method = "post" th:object = "${income}">
+<form th:action = "@{/editIncome}" method = "post" th:object = "${income}">
+	<input type="hidden" th:field="*{id}">
 	<div style= "text-align:center">
 		日付<br>
 		<input type="date" th:name="datetime" th:field="*{datetime}" class="form-control">

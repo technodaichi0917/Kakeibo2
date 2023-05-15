@@ -26,7 +26,7 @@
 	<!-- ログイン後　-->
 		<li class="nav-item" sec:authorize="isAuthenticated()">
 			<form th:action="@{/index}" method="get" class="form-inline">
-				<input type="submit" value="トップ" class="btn">
+				<input type="submit" value="支出収入登録" class="btn">
 			</form>
 		</li>
 		<li class="nav-item" sec:authorize="isAuthenticated()">
