@@ -11,7 +11,8 @@
 
 <h2 style= "text-align:center">支出変更登録</h2>
 
-<form th:action = "@{|/editSpending/${spendingId}|}" method = "post" th:object = "${spending}">
+<form th:action = "@{/editSpending}" method = "post" th:object = "${spending}">
+	<input type="hidden" th:field="*{id}">
 	<div style= "text-align:center">
 		日付<br>
 		<input type="date" th:name="datetime" th:field="*{datetime}" class="form-control">

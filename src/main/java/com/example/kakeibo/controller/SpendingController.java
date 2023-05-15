@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.kakeibo.model.Income;
 import com.example.kakeibo.model.Spending;
 import com.example.kakeibo.repository.SpendingRepository;
+import com.example.kakeibo.service.SpendingService;
 
 @Controller
 public class SpendingController {
@@ -19,8 +20,8 @@ public class SpendingController {
 	@Autowired
 	private SpendingRepository spendingRepository;
 	
-//	@Autowired
-//	private SpendingRepository spendingRepository;
+	@Autowired
+	private SpendingService spendingService;
 	
 	//新規支出登録ページに遷移
 	@GetMapping("/newSpending")
@@ -45,8 +46,10 @@ public class SpendingController {
 	}
 	
 	//フォームから入力された支出更新情報をspendingServiceへ送る
-//	@PostMapping()
-//	public String editSpending() {
-//		return "";
-//	}
+	@PostMapping("/editSpending")
+	public String editSpendingPost(Spending spending) {
+		
+		spendingService.updateSpending(spending);
+		return "redirect:/currentMonthTotal";
+	}
 }
